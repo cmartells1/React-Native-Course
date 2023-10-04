@@ -28,7 +28,6 @@ export default function App() {
           data={courseGoals}
           alwaysBounceVertical={false}
           renderItem={(itemData) => {
-            console.log(itemData);
             return (
               <GoalItem
                 text={itemData.item.text}
