@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  ScrollView,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View, Button, TextInput, FlatList } from 'react-native';
+
+import GoalItem from './components/GoalItem';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -42,11 +36,7 @@ export default function App() {
           data={courseGoals}
           alwaysBounceVertical={false}
           renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{itemData.item.text}</Text>
-              </View>
-            );
+            return <GoalItem text={itemData.item.text} />;
           }}
           //This is for using an id or some other property as a key for flat list
           // keyExtractor={(item, index) => {
@@ -82,14 +72,5 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
-  },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: '#5e0acc',
-  },
-  goalText: {
-    color: 'white',
   },
 });
