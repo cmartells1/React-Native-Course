@@ -10,12 +10,14 @@ export default function App() {
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((prevCourseGoals) => [
       ...prevCourseGoals,
-      { text: enteredGoalText, key: Math.random().toString() },
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
-  function deleteGoalHandler() {
-    console.log('DELETE');
+  function deleteGoalHandler(id) {
+    setCourseGoals((prevCourseGoals) => {
+      return prevCourseGoals.filter((goal) => goal.id !== id);
+    });
   }
 
   return (
@@ -26,17 +28,19 @@ export default function App() {
           data={courseGoals}
           alwaysBounceVertical={false}
           renderItem={(itemData) => {
+            console.log(itemData);
             return (
               <GoalItem
                 text={itemData.item.text}
+                id={itemData.item.id}
                 onDeleteItem={deleteGoalHandler}
               />
             );
           }}
           //This is for using an id or some other property as a key for flat list
-          // keyExtractor={(item, index) => {
-          //   return item.id
-          // }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
         />
       </View>
     </View>
