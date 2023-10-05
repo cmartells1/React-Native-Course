@@ -32,7 +32,10 @@ const GoalInput = (props) => {
             />
           </View>
           <View style={styles.button}>
-            <Button title='Cancel' />
+            <Button
+              title='Cancel'
+              onPress={props.onCancel}
+            />
           </View>
         </View>
       </View>
